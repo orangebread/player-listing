@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchPlayersAndPagination, fetchSearchPagination } from '../actions/players';
+import { fetchPlayersAndPagination } from '../actions/players';
 
 class Pagination extends Component {
     pageHandler(page) {
@@ -49,4 +49,4 @@ const mapStateToProps = state => {
 	};
 }
 
-export default connect(mapStateToProps, { fetchPlayersAndPagination, fetchSearchPagination })(Pagination);
+export default connect(mapStateToProps, { fetchPlayersAndPagination })(Pagination);

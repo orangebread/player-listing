@@ -1,6 +1,8 @@
 ## Getting Started
 
-### `npm install` for dependencies
+### `npm install` 
+
+Install dependencies <br />
 
 ### `npm start`
 
