@@ -1,15 +1,17 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
 
 import Search from './Search';
-import PokemonList from './PokemonList';
+import PlayersList from './PlayersList';
+import Pagination from './Pagination';
 
 const App = () => {
 	return (
-		<Container>
-            <Search />
-			<PokemonList />
-		</Container>
+		<div className="ui container">
+			<Search />
+            <Pagination />
+			<PlayersList />
+			<Pagination />
+		</div>
 	);
 };
 

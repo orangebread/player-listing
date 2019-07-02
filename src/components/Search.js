@@ -1,9 +1,40 @@
 import React, { Component } from 'react';
 
-const Search = () => {
-    return (
-        <div>Search</div>
-    )
+import { connect } from 'react-redux';
+
+import { searchPlayers } from '../actions/players';
+
+class Search extends Component {
+    state = { term: '' };
+
+    onInputChange = (event) => {
+        this.setState({term: event.target.value});
+    }
+
+    onFormSubmit = (event) => {
+        event.preventDefault();
+        this.props.searchPlayers(this.state.term);
+    }
+
+    render() {
+        return (
+            <div className="ui segment">
+                <form onSubmit={this.onFormSubmit} className="ui form">
+                    <div className="field">
+                        <label>Player Search:</label>
+                        <input type="text" value={this.state.term}
+                        onChange={this.onInputChange} />
+                    </div>                    
+                </form>
+            </div>
+        );
+    }
 }
 
-export default Search;
+const mapStateToProps = state => {
+	return {
+		players: state.players
+	};
+}
+
+export default connect(mapStateToProps, { searchPlayers })(Search);

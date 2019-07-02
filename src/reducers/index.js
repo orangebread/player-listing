@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
-import { pokemonsReducer } from './pokemons';
+import { playersReducer } from './players';
+import { paginationReducer } from './pagination';
 
 export default combineReducers({
-    pokemons: pokemonsReducer
+    players: playersReducer,
+    pagination: paginationReducer
 });
