@@ -1,23 +1,19 @@
 import players from '../api/players';
-import { FETCH_PLAYERS, SEARCH_PLAYERS, FETCH_PAGINATION } from '../types';
+import { SEARCH_PLAYERS, FETCH_SEARCH_PAGINATION } from '../types';
 
-export const fetchPlayers = (page = 1) => async dispatch => {
-	const response = await players.get(`/people?page=${page}`);
-	dispatch({ type: FETCH_PLAYERS, payload: {isSearch: false, data: response.data.results }});
-};
+export const fetchPlayersAndPagination = (query, page) => async dispatch => {
+	await dispatch(searchPlayers(query, page));
 
-export const fetchPlayersAndPagination = page => async dispatch => {
-	await dispatch(fetchPlayers(page));
-
-	await dispatch(fetchPagination(page));
+	await dispatch(fetchSearchPagination(query, page));
 }
 
-export const fetchPagination = (page = 1) => async dispatch => {
-	const response = await players.get(`/people?page=${page}`);
-	dispatch({ type: FETCH_PAGINATION, payload: {currentPage: page, count: response.data.count }});
+export const fetchSearchPagination = (query = '', page = 1) => async dispatch => {
+	console.log('fetchsearchpag', query + ' ' + page);
+	const response = await players.get(`/people?search=${query}&page=${page}`);
+	dispatch({ type: FETCH_SEARCH_PAGINATION, query, payload: {currentPage: page, count: response.data.count }});
 };
 
-export const searchPlayers = query => async dispatch => {
-	const response = await players.get(`/people?search=${query}`);
-	dispatch({ type: SEARCH_PLAYERS, payload: { isSearch: true, data: response.data.results }});
+export const searchPlayers = (query = '', page = 1) => async dispatch => {
+	const response = await players.get(`/people?search=${query}&page=${page}`);
+	dispatch({ type: SEARCH_PLAYERS, payload: { isSearch: true, query, resultCount: response.data.count, data: response.data.results }});
 }

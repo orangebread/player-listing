@@ -5,12 +5,10 @@
 ### `npm start`
 
 Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Notes
 
-### `npm test`
+Had to use alternative API because it didn't seem like I could get a non-commercial API from mysportsfeed in enough time. Instead I'm pulling data from https://swapi.co/api (a Star Wars API).
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+Hopefully the spirit of the exercise is conveyed. Please let me know if you have any questions. Thanks!

@@ -21,7 +21,7 @@ class Search extends Component {
             <div className="ui segment">
                 <form onSubmit={this.onFormSubmit} className="ui form">
                     <div className="field">
-                        <label>Player Search:</label>
+                        <label>Player Search ({this.props.pagination.count}):</label>
                         <input type="text" value={this.state.term}
                         onChange={this.onInputChange} />
                     </div>                    
@@ -33,6 +33,7 @@ class Search extends Component {
 
 const mapStateToProps = state => {
 	return {
+        pagination: state.pagination,
 		players: state.players
 	};
 }

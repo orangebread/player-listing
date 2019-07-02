@@ -1,27 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchPlayersAndPagination } from '../actions/players';
+import { fetchPlayersAndPagination, fetchSearchPagination } from '../actions/players';
 
 class Pagination extends Component {
     pageHandler(page) {
-        this.props.fetchPlayersAndPagination(page);
+        this.props.fetchPlayersAndPagination(this.props.players.query, page);
     }
 
     renderPageList() {
         let numOfPages = [];
-        if (this.props.players.isSearch) {
-            console.log(this.props.players.data);
-            for (let i = 1; i < Math.ceil(this.props.players.data.length / 10) + 1; i++) {
-                numOfPages.push(i);
-            } 
-        } else {
-            for (let i = 1; i < Math.ceil(this.props.pagination.count / 10) + 1; i++) {
-                numOfPages.push(i);
-            }
-        }        
-
-        console.log(numOfPages);
+        for (let i = 1; i < Math.ceil(this.props.players.resultCount / 10) + 1; i++) {
+            numOfPages.push(i);
+        }    
 
         return numOfPages.map(page => {
             return (    
@@ -58,4 +49,4 @@ const mapStateToProps = state => {
 	};
 }
 
-export default connect(mapStateToProps, { fetchPlayersAndPagination })(Pagination);
+export default connect(mapStateToProps, { fetchPlayersAndPagination, fetchSearchPagination })(Pagination);

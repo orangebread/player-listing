@@ -27,16 +27,22 @@ class PlayersList extends Component {
     }
 
     render() {
-        return (
-            <div className="ui list">
-                {this.renderList()}
-            </div>
-        );
+        const { data } = this.props.players;
+        if (data) {
+            const { resultCount }  = this.props.players;
+            return (
+                <div className="ui list">
+                    <h3>Results: {resultCount}</h3>
+                    {this.renderList()}
+                </div>
+            );
+        } else {
+            return <div>Loading...</div>
+        }     
     }    
 }
 
 const mapStateToProps = state => {
-    console.log(state.players.data);
 	return {
 		players: state.players
 	};
